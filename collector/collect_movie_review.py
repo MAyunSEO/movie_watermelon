@@ -22,7 +22,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 # 2. chrome driver 다운로드 후 주입(구버전)
 # 주소 : https://sites.google.com/chromium.org/driver/
 
-
 driver = Service(executable_path="../driver/chromedriver.exe")
 options = Options()
 options.add_experimental_option("detach", True)  # ChromeDriver 자동 종료 X
@@ -72,9 +71,15 @@ review_list = doc.select("ul.list_comment div.cmt_info")
 
 for review_box in review_list:
     score = review_box.select("div.ratings")[0].text
-    writer = review_box.select("")
-    review_date = review_box.select("")
-    review = review_box.select("")
+    writer = review_box.select("a.link_nick")[0].text
+    review_date = review_box.select("span.txt_date")[0].text
+    review = review_box.select("p.desc_txt")[0].text
+    if writer != '댓글작성자':
+        print(list.remove(("댓글작성자")))
+    if score != '댓글모아보기':
+        list.remove("댓글모아보기")
     print(f" - 평점 : {score}")
+    print(f" - 작성자 : {writer}")
+    print(f" - 작성일자 : {review_date}")
+    print(f" - 리뷰 : {review}")
     # 숙제:리뷰, 작성자, 작성일자 수집(평점은 해주심)
-

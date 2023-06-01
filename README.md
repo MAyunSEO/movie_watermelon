@@ -1,4 +1,4 @@
-# movie_watermelon
+movie_watermelon
 1. 영화 리뷰 수집
 2. 수집된 영화 리뷰 MongDB에 저장
 3. MongDB에 저장된 리뷰 가져오기
